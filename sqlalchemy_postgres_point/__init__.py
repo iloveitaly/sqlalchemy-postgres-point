@@ -1,12 +1,11 @@
-import logging
-import os
+"""Top-level package for `sqlalchemy-postgres-point`.
 
-logging.basicConfig(
-    level=os.environ.get("LOG_LEVEL", "INFO").upper(),
-)
+Exports:
+    PointType: SQLAlchemy custom type representing a PostgreSQL POINT column.
+"""
 
-logger = logging.getLogger(__name__)
+from .point import PointType
 
-
-def main():
-    logger.info("Hello, Logs!")
+__all__ = [
+    "PointType",
+]
