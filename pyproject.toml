@@ -1,8 +1,19 @@
 [project]
 name = "sqlalchemy-postgres-point"
 version = "0.1.0"
-description = ""
-keywords = []
+description = "Lightweight SQLAlchemy custom type for PostgreSQL POINT columns with tuple binding and an earth-distance comparator."
+keywords = [
+    "sqlalchemy",
+    "postgresql",
+    "point",
+    "geometry",
+    "geospatial",
+    "gis",
+    "database",
+    "types",
+    "earthdistance",
+    "sqlmodel",
+]
 readme = "README.md"
 requires-python = ">=3.9"
 dependencies = ["sqlalchemy>=2.0"]
@@ -19,4 +30,4 @@ build-backend = "uv_build"
 module-root = ""
 
 [dependency-groups]
-dev = ["pytest>=8.3.3"]
+dev = ["pytest>=8.3.3", "sqlmodel>=0.0.21", "psycopg[binary]>=3.2.0"]
