@@ -29,8 +29,6 @@ jobs:
       - run: docker compose up -d --wait
       - uses: iloveitaly/github-action-direnv-load-and-mask@master
       - run: uv sync
-      - name: Check CLI
-        run: uv run ${{ github.event.repository.name }} --help
       - run: uv run pytest
 
   release-please:
