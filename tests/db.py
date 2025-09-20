@@ -1,19 +1,19 @@
-from __future__ import annotations
-
 import os
 from contextlib import contextmanager
 from typing import Iterator
 
-from sqlalchemy import create_engine, text
+from sqlalchemy import create_engine
 from sqlalchemy.engine import Engine
-from sqlalchemy.exc import OperationalError
 from sqlalchemy.orm import Session
-
-DEFAULT_TEST_DB = "postgresql+psycopg://root:password@localhost:5432/development"
 
 
 def get_database_url() -> str:
-    return os.environ.get("TEST_DATABASE_URL", DEFAULT_TEST_DB)
+    """Return database URL for tests.
+
+    Defaults to an in-memory SQLite database when $DATABASE_URL is not set,
+    so the test suite can run without external services.
+    """
+    return os.environ.get("DATABASE_URL", "sqlite:///:memory:")
 
 
 _engine: Engine | None = None
@@ -24,20 +24,6 @@ def get_engine(echo: bool = False) -> Engine:
     if _engine is None:
         _engine = create_engine(get_database_url(), echo=echo, future=True)
     return _engine
-
-
-def database_available() -> bool:
-    try:
-        eng = get_engine()
-        with eng.connect() as conn:
-            conn.execute(text("SELECT 1"))
-        return True
-    except OperationalError:
-        return False
-    except Exception:
-        if os.environ.get("DEBUG_DB"):
-            raise
-        return False
 
 
 @contextmanager
