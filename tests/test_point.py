@@ -35,6 +35,35 @@ def test_result_processor_invalid():
         proc("invalid")
 
 
+def test_validation_bind_out_of_range():
+    pt = PointType()
+    bind = pt.bind_processor(None)
+    with pytest.raises(ValueError):
+        bind((200.0, 0.0))  # invalid longitude
+    with pytest.raises(ValueError):
+        bind((0.0, 100.0))  # invalid latitude
+
+
+def test_validation_literal_non_finite():
+    import math
+
+    pt = PointType()
+    lit = pt.literal_processor(None)
+    with pytest.raises(ValueError):
+        lit((math.nan, 0.0))
+    with pytest.raises(ValueError):
+        lit((0.0, math.inf))
+
+
+def test_validation_result_out_of_range():
+    pt = PointType()
+    res = pt.result_processor(None, None)
+    with pytest.raises(ValueError):
+        res("(181,0)")
+    with pytest.raises(ValueError):
+        res("(0,91)")
+
+
 def test_earth_distance_compilation():
     # Build an expression using the custom comparator
     c = column("location", PointType())
