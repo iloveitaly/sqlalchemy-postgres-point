@@ -85,7 +85,7 @@ When using `PointType` in your models, add this import to your `alembic/env.py` 
 import sqlalchemy_postgres_point.alembic_integration
 ```
 
-See [docs/alembic_integration.md](docs/alembic_integration.md) for detailed setup instructions.
+For detailed setup instructions and examples, see [docs/alembic_integration.md](docs/alembic_integration.md).
 
 Development
 -----------
