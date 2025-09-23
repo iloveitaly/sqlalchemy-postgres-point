@@ -75,8 +75,7 @@ Run the test suite with:
 uv run pytest -q
 ```
 
-Alembic Integration
--------------------
+## Alembic Integration
 
 When using `PointType` in your models, add this import to your `alembic/env.py` file to automatically include the necessary imports in migration files:
 
