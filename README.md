@@ -79,8 +79,8 @@ uv run pytest -q
 
 When using `PointType` in your models, add this import to your `alembic/env.py` file to automatically include the necessary imports in migration files:
 
+**alembic/env.py**
 ```python
-# alembic/env.py
 import sqlalchemy_postgres_point.alembic_integration
 ```
 

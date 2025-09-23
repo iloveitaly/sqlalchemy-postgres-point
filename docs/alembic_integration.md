@@ -17,8 +17,8 @@ That's it! Now when you generate migrations containing `PointType`, the import w
 
 ### 1. Model Definition
 
+**models.py**
 ```python
-# models.py
 from sqlalchemy import Column, Integer
 from sqlalchemy.orm import DeclarativeBase
 from sqlalchemy_postgres_point import PointType
@@ -35,8 +35,8 @@ class Place(Base):
 
 ### 2. Alembic Configuration
 
+**alembic/env.py**
 ```python
-# alembic/env.py
 from alembic import context
 from sqlalchemy import engine_from_config, pool
 
