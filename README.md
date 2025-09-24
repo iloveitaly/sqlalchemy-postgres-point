@@ -104,7 +104,7 @@ DROP EXTENSION IF EXISTS cube;
 
 **Integration Steps:**
 
-1. Generate a new migration: `alembic revision -m "Add PostgreSQL extensions for earth distance"`
+1. Generate a new migration: `alembic revision -m "add_postgres_extensions"`
 2. Copy the `upgrade()` and `downgrade()` functions above into your new migration file
 3. Run the migration: `alembic upgrade head`
 
