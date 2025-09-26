@@ -60,6 +60,54 @@ stmt = select(Place.id, Place.location.earth_distance(origin).label("dist"))
 
 The comparator translates `Place.location.earth_distance(origin)` into SQL using the `<@>` operator (requires PostgreSQL with the `cube` / `earthdistance` extension for meaningful results; without extensions the operator may not exist—adapt as needed for your environment). This library only *emits* the operator; it does not manage PostgreSQL extensions.
 
+## PostgreSQL Extensions Setup
+
+To use the earth distance functionality (`earth_distance()` comparator), you need to enable the `cube` and `earthdistance` PostgreSQL extensions. These extensions provide spatial operations for calculating distances between geographic points on Earth's surface using a spherical model.
+
+### Alembic Migration Example
+
+If you're using Alembic for database migrations, you can create a migration to enable these extensions:
+
+```python
+"""Add PostgreSQL extensions for earth distance calculations
+
+Revision ID: your_revision_id
+Revises: your_previous_revision
+Create Date: 2025-01-XX XX:XX:XX.XXXXXX
+
+"""
+from typing import Sequence, Union
+
+from alembic import op
+import sqlalchemy as sa
+
+# revision identifiers, used by Alembic.
+revision: str = 'your_revision_id'
+down_revision: Union[str, None] = 'your_previous_revision'
+branch_labels: Union[str, Sequence[str], None] = None
+depends_on: Union[str, Sequence[str], None] = None
+
+
+def upgrade() -> None:
+    op.execute("""
+CREATE EXTENSION IF NOT EXISTS cube;
+CREATE EXTENSION IF NOT EXISTS earthdistance;
+""")
+
+
+def downgrade() -> None:
+    op.execute("""
+DROP EXTENSION IF EXISTS earthdistance;
+DROP EXTENSION IF EXISTS cube;
+""")
+```
+
+**Integration Steps:**
+
+1. Generate a new migration: `alembic revision -m "add_postgres_extensions"`
+2. Copy the `upgrade()` and `downgrade()` functions above into your new migration file
+3. Run the migration: `alembic upgrade head`
+
 Returned Python Values
 ----------------------
 
