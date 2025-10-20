@@ -4,7 +4,7 @@ requires-python = ">=3.10"
 
 [[package]]
 name = "activemodel"
-version = "0.13.0"
+version = "0.14.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "python-decouple-typed" },
@@ -12,9 +12,9 @@ dependencies = [
     { name = "textcase" },
     { name = "typeid-python" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/f1/c4/e884e218eeff8f76457deaf3ab2da236278060045b6cc66c82afe8f3552e/activemodel-0.13.0.tar.gz", hash = "sha256:9cb2cd762cbfc338981c24eadb9f79a756ce3f83de271ef37b5adb30796b9de5", size = 137123, upload-time = "2025-09-05T14:33:54.663Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/3e/74/29f73d34a115525eb9dbc7df5290f79c0798c1913ba836e3032c321a7eda/activemodel-0.14.0.tar.gz", hash = "sha256:d49c22fd65aabf5f1bf2ab4407faa6d5ef5d9201b07df5632f10551542ac3794", size = 116959, upload-time = "2025-10-16T18:25:24.663Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/44/71/d6577db7288bf38d52b6455336f7044ca3bddb768134eacbe632e3f0c69a/activemodel-0.13.0-py3-none-any.whl", hash = "sha256:e032fc0d7383d04f8eeec3fbe54c7bce9cd10ddf94667b016bc4e76be2c31f8a", size = 37923, upload-time = "2025-09-05T14:33:53.541Z" },
+    { url = "https://files.pythonhosted.org/packages/89/1a/4ee4e308a4200842fc23d50b708e3c28a15616c2d6cddcb2aac34f762bc0/activemodel-0.14.0-py3-none-any.whl", hash = "sha256:47ac0934b7699c462d589f7a35b33c56067ac078811ca9a6a0068813aa960b20", size = 39104, upload-time = "2025-10-16T18:25:23.593Z" },
 ]
 
 [[package]]
