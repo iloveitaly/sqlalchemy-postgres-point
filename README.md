@@ -16,6 +16,7 @@ Features
 * Literal rendering for DDL / SQL emission.
 * Custom comparator exposing the PostgreSQL earth-distance `<@>` operator (returns a `Float`).
 * `cache_ok = True` for SQLAlchemy 2.x compilation caching.
+* **Automatic Alembic integration** for migration files.
 
 Installation
 ------------
@@ -121,6 +122,17 @@ Run the test suite with:
 ```bash
 uv run pytest -q
 ```
+
+## Alembic Integration
+
+When using `PointType` in your models, add this import to your `alembic/env.py` file to automatically include the necessary imports in migration files:
+
+**alembic/env.py**
+```python
+import sqlalchemy_postgres_point.alembic_integration
+```
+
+Once added, `from sqlalchemy_postgres_point import PointType` will be automatically included in generated migration files.
 
 Development
 -----------
