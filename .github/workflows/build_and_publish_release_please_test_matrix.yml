@@ -26,7 +26,7 @@ jobs:
         python-version: ["3.13", "3.12"]
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: jdx/mise-action@v3
       - run: mise use python@${{ matrix.python-version }}
       - run: docker compose up -d --wait
@@ -40,7 +40,7 @@ jobs:
     outputs:
       release_created: ${{ steps.release.outputs.release_created }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: googleapis/release-please-action@v4
         id: release
         with:
@@ -55,7 +55,7 @@ jobs:
       id-token: write
       contents: read
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: jdx/mise-action@v3
       - uses: iloveitaly/github-action-direnv-load-and-mask@master
       - run: uv sync
