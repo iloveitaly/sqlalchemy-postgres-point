@@ -4,6 +4,7 @@ on:
     branches:
       - main
       - master
+  pull_request: {}
 
 permissions:
   contents: write
@@ -17,13 +18,26 @@ env:
 
   # required otherwise github api calls are rate limited
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  MISE_ENV: ci
 
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: jdx/mise-action@v3
+      - uses: iloveitaly/github-action-direnv-load-and-mask@master
+      - run: uv sync
+      - run: just lint
+
   matrix-test:
+    needs: lint
     strategy:
       matrix:
-        os: [ubuntu-latest]
-        python-version: ["3.13", "3.12"]
+        os:
+          - ubuntu-latest
+          # - macos-latest
+        python-version: ["3.13", "3.12", "3.11", "3.10"]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v6
@@ -32,20 +46,26 @@ jobs:
       - run: docker compose up -d --wait
       - uses: iloveitaly/github-action-direnv-load-and-mask@master
       - run: uv sync
-      - run: uv run pytest
+      - run: just test
 
   release-please:
     needs: matrix-test
     runs-on: ubuntu-latest
     outputs:
       release_created: ${{ steps.release.outputs.release_created }}
+      tag_name: ${{ steps.release.outputs.tag_name }}
+      version: ${{ steps.release.outputs.version }}
+    permissions:
+      contents: write
+      issues: write
+      # NOTE this permission requires configuration to be set on the repo, check `just github_repo_permissions_create`
+      pull-requests: write
     steps:
       - uses: actions/checkout@v6
       - uses: googleapis/release-please-action@v4
         id: release
         with:
           release-type: python
-          token: ${{ secrets.GH_PERSONAL_TOKEN }}
 
   build-and-publish:
     needs: release-please
@@ -54,6 +74,7 @@ jobs:
     permissions:
       id-token: write
       contents: read
+
     steps:
       - uses: actions/checkout@v6
       - uses: jdx/mise-action@v3
@@ -61,3 +82,5 @@ jobs:
       - run: uv sync
       - run: uv build
       - run: uv publish
+
+

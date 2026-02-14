@@ -1,3 +1,8 @@
+[![Release Notes](https://img.shields.io/github/release/iloveitaly/sqlalchemy-postgres-point)](https://github.com/iloveitaly/sqlalchemy-postgres-point/releases)
+[![Downloads](https://static.pepy.tech/badge/sqlalchemy-postgres-point/month)](https://pepy.tech/project/sqlalchemy-postgres-point)
+![GitHub CI Status](https://github.com/iloveitaly/sqlalchemy-postgres-point/actions/workflows/build_and_publish.yml/badge.svg)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 sqlalchemy-postgres-point
 =========================
 
@@ -150,3 +155,6 @@ License
 
 MIT (see your project's LICENSE file if added later). Contributions welcome.
 
+---
+
+*This project was created from [iloveitaly/python-package-template](https://github.com/iloveitaly/python-package-template)*
