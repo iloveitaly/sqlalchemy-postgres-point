@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.1](https://github.com/iloveitaly/sqlalchemy-postgres-point/compare/v0.1.0...v0.1.1) (2026-02-14)
+
+
+### Documentation
+
+* add MIT license to project ([2560aae](https://github.com/iloveitaly/sqlalchemy-postgres-point/commit/2560aae251026a34d4f7398d5f6a1002c0e93919))
+
 ## 0.1.0 (2025-09-20)
 
 
