@@ -127,6 +127,33 @@ Run the test suite with:
 uv run pytest -q
 ```
 
+## Alembic Integration
+
+When using `PointType` in your models, you can automatically include the necessary imports in migration files by updating your `alembic/env.py` file.
+
+First, import the integration module:
+
+```python
+import sqlalchemy_postgres_point.alembic_integration
+```
+
+Then, ensure your `context.configure` call includes a `render_item` hook to handle the `PointType`:
+
+```python
+def render_item(type_, obj, autogen_context):
+    if type_ == "type" and type(obj).__name__ == "PointType":
+        return sqlalchemy_postgres_point.alembic_integration.render_point_type(obj, obj, autogen_context)
+    return False
+
+# ... in run_migrations_online and run_migrations_offline ...
+context.configure(
+    # ... other options ...
+    render_item=render_item,
+)
+```
+
+Once added, `from sqlalchemy_postgres_point import PointType` will be automatically included in generated migration files whenever a `PointType` column is detected.
+
 Development
 -----------
 

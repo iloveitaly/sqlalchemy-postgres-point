@@ -39,6 +39,7 @@ dev = [
     "coverage>=7.13.4",
     "pytest-cov>=7.0.0",
     "covdefaults>=2.3.0",
+    "alembic>=1.16.5",
 ]
 
 [tool.pyright]
