@@ -31,7 +31,7 @@ module-root = ""
 [dependency-groups]
 dev = [
     "pytest>=8.3.4",
-    "sqlmodel>=0.0.21",
+    "sqlmodel>=0.0.33",
     "psycopg[binary]>=3.2.0",
     "activemodel",
     "pyright[nodejs]>=1.1.408",
