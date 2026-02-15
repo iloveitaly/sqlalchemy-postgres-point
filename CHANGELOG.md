@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.0](https://github.com/iloveitaly/sqlalchemy-postgres-point/compare/v0.1.1...v0.2.0) (2026-02-14)
+
+
+### Features
+
+* **alembic:** add alembic integration for PointType auto-import ([789737b](https://github.com/iloveitaly/sqlalchemy-postgres-point/commit/789737b0b7e1ea043f08210b12f441283b53934d))
+
 ## [0.1.1](https://github.com/iloveitaly/sqlalchemy-postgres-point/compare/v0.1.0...v0.1.1) (2026-02-14)
 
 
