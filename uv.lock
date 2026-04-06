@@ -4,17 +4,16 @@ requires-python = ">=3.12"
 
 [[package]]
 name = "activemodel"
-version = "0.18.0"
+version = "0.19.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "python-decouple-typed" },
     { name = "sqlmodel" },
     { name = "textcase" },
     { name = "typeid-python" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/96/8d/b25da3f3e2da62b151ce61470f21672d442b017e3d38f4219add799305c5/activemodel-0.18.0.tar.gz", hash = "sha256:b6825098b1af14b4aeea5ed5033cde265e75467a0a2a5dbb6f30b97836d977fb", size = 31603, upload-time = "2026-03-13T18:35:05.357Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/73/e9/d0b0e3d2f3b4d3686250817d0c1a8c45bc9dbadcf3dde90abace7e77b1e2/activemodel-0.19.0.tar.gz", hash = "sha256:305b28e4e5a8b96b549f4532a7d9e5093ad9ddc4d337b322c92bb656cc404fe7", size = 32487, upload-time = "2026-04-01T20:24:26.452Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/1d/6c/fdb4f9102c7b41c9489b8760bdf9dd189474239fd17ac20610706e790c0f/activemodel-0.18.0-py3-none-any.whl", hash = "sha256:e8537efb0e8d6256997b8df34507c0f98f95321a5144690f660171ab53e3d02c", size = 41072, upload-time = "2026-03-13T18:35:06.228Z" },
+    { url = "https://files.pythonhosted.org/packages/8e/2e/4e40927e20556b849e4831d5f1f52c15f955a68beee7cf86f2522796195c/activemodel-0.19.0-py3-none-any.whl", hash = "sha256:5f26b2f02f1f4f6052bb29a997d567d815f7613e033b2c7e96e9245cbdf9db0c", size = 42059, upload-time = "2026-04-01T20:24:25.187Z" },
 ]
 
 [[package]]
@@ -510,14 +509,6 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/5e/f7/c933acc76f5208b3b00089573cf6a2bc26dc80a8aece8f52bb7d6b1855ca/pytest_cov-7.0.0.tar.gz", hash = "sha256:33c97eda2e049a0c5298e91f519302a1334c26ac65c1a483d6206fd458361af1", size = 54328, upload-time = "2025-09-09T10:57:02.113Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/ee/49/1377b49de7d0c1ce41292161ea0f721913fa8722c19fb9c1e3aa0367eecb/pytest_cov-7.0.0-py3-none-any.whl", hash = "sha256:3b8e9558b16cc1479da72058bdecf8073661c7f57f7d3c5f22a1c23507f2d861", size = 22424, upload-time = "2025-09-09T10:57:00.695Z" },
-]
-
-[[package]]
-name = "python-decouple-typed"
-version = "3.11.0"
-source = { registry = "https://pypi.org/simple" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/9d/ca/fc5a6119146651cbfbb4aae333a2e6f69844161092c450b10e97064f5e75/python_decouple_typed-3.11.0-py3-none-any.whl", hash = "sha256:967665073aec7a861844e0d9d21768324d3d819311574702cf5be7403a18da58", size = 11440, upload-time = "2023-12-17T14:43:22.043Z" },
 ]
 
 [[package]]
