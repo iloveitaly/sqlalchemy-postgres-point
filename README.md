@@ -139,7 +139,7 @@ Or you could use something like [`some_fn`](https://funcy.readthedocs.io/en/stab
 
 ## Limitations / Notes
 
-* No automatic validation of longitude/latitude ranges; add your own if required.
+* Coordinates are validated on both write and read: longitude must be within `[-180, 180]`, latitude within `[-90, 90]`, and non-finite values (`NaN`, `inf`) are rejected with a `ValueError`.
 * Uses simple textual representation `(lng,lat)` accepted by PostgreSQL `POINT` input parser.
 * If you need advanced spatial indexing / SRID support, look at GeoAlchemy2/PostGIS instead.
 
