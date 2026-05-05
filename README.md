@@ -106,15 +106,14 @@ Values are loaded as a 2-tuple of floats `(lng, lat)` or `None` when NULL.
 
 ## Alembic Integration
 
-To ensure generated migration files include the correct `PointType` import, pass the provided `render_item` hook to `context.configure()` in your `alembic/env.py`:
+To ensure generated migration files include the correct `PointType` import, pass the provided `render_item` hook to `context.configure()` in your `alembic/env.py`. This must be added to **both** `run_migrations_online` and `run_migrations_offline`:
 
 ```python
-from sqlalchemy_postgres_point.alembic_integration import render_item
+from sqlalchemy_postgres_point.alembic_integration import render_item as render_point_item
 
-# in run_migrations_online and run_migrations_offline:
 context.configure(
     # ... other options ...
-    render_item=render_item,
+    render_item=render_point_item,
 )
 ```
 
@@ -122,17 +121,22 @@ Once wired up, `from sqlalchemy_postgres_point import PointType` will be automat
 
 ### Chaining `render_item`
 
-It's insane to me, but you have to chain multiple `render_item` instances you may have yourself.
+If you need to combine this with other packages that also provide a `render_item`, chain them:
 
 ```python
-from sqlalchemy_postgres_point.alembic_integration import render_item as render_point
+from sqlalchemy_postgres_point.alembic_integration import render_item as render_point_item
 
 def render_item(type_, obj, autogen_context):
     return (
-        render_point(type_, obj, autogen_context)
+        render_point_item(type_, obj, autogen_context)
         or other_package.render_item(type_, obj, autogen_context)
         or False
     )
+
+context.configure(
+    # ... other options ...
+    render_item=render_item,
+)
 ```
 
 Or you could use something like [`some_fn`](https://funcy.readthedocs.io/en/stable/funcs.html#some_fn) to make this even cleaner.
