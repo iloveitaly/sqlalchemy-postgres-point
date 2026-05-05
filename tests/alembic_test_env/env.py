@@ -7,7 +7,7 @@ from sqlalchemy import engine_from_config, pool
 from sqlmodel import SQLModel
 
 import tests.models  # noqa: F401
-import sqlalchemy_postgres_point.alembic_integration
+from sqlalchemy_postgres_point.alembic_integration import render_item
 
 # Add the project root to sys.path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
@@ -21,17 +21,6 @@ if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
 target_metadata = SQLModel.metadata
-
-
-def render_item(type_, obj, autogen_context):
-    """
-    Plugin to render custom types.
-    """
-    if type_ == "type" and type(obj).__name__ == "PointType":
-        return sqlalchemy_postgres_point.alembic_integration.render_point_type(
-            obj, obj, autogen_context
-        )
-    return False
 
 
 def run_migrations_offline() -> None:

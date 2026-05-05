@@ -56,15 +56,21 @@ def test_alembic_integration():
     versions_path.mkdir()
 
 
-def test_render_point_type_directly():
-    from sqlalchemy_postgres_point.alembic_integration import render_point_type
+def test_render_item_directly():
+    from sqlalchemy import Integer
+    from sqlalchemy_postgres_point.alembic_integration import render_item
 
     class MockAutogenContext:
         def __init__(self):
             self.imports = set()
 
     ctx = MockAutogenContext()
-    result = render_point_type(PointType(), None, ctx)
 
+    result = render_item("type", PointType(), ctx)
     assert result == "PointType()"
     assert "from sqlalchemy_postgres_point import PointType" in ctx.imports
+
+    # non-PointType types are not handled
+    assert render_item("type", Integer(), MockAutogenContext()) is False
+    # non-type render categories are not handled
+    assert render_item("column", PointType(), MockAutogenContext()) is False
