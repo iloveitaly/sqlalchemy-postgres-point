@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.1](https://github.com/iloveitaly/sqlalchemy-postgres-point/compare/v0.2.0...v0.2.1) (2026-05-05)
+
+
+### Documentation
+
+* fix stale limitation — coordinate validation has been enforced since bf8e50a ([#31](https://github.com/iloveitaly/sqlalchemy-postgres-point/issues/31)) ([8f6a4fb](https://github.com/iloveitaly/sqlalchemy-postgres-point/commit/8f6a4fb81fdc52a2bdf002e2a1a9c27cf439aef5))
+* improve readme structure and alembic integration instructions ([f636d2a](https://github.com/iloveitaly/sqlalchemy-postgres-point/commit/f636d2a485c13c7b0a47301ea88b585548d66c3e))
+
 ## [0.2.0](https://github.com/iloveitaly/sqlalchemy-postgres-point/compare/v0.1.1...v0.2.0) (2026-02-14)
 
 
