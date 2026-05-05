@@ -3,18 +3,15 @@
 ![GitHub CI Status](https://github.com/iloveitaly/sqlalchemy-postgres-point/actions/workflows/build_and_publish.yml/badge.svg)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-sqlalchemy-postgres-point
-=========================
+# sqlalchemy-postgres-point
 
 Lightweight, pure-Python SQLAlchemy custom type for PostgreSQL `POINT` columns.
 
-Why
-----
+## Why
 
 PostgreSQL has a native `POINT` type (stored internally as a pair of float8 values). SQLAlchemy does not ship a dedicated high-level type wrapper for simple geometric primitives. This package provides a very small `PointType` you can use immediately without pulling in a full spatial stack (e.g. PostGIS + GeoAlchemy2) when all you need is storing and retrieving `(longitude, latitude)` pairs.
 
-Features
---------
+## Features
 
 * Simple `(lng, lat)` tuple binding and result conversion.
 * Safe NULL handling.
@@ -22,23 +19,13 @@ Features
 * Custom comparator exposing the PostgreSQL earth-distance `<@>` operator (returns a `Float`).
 * `cache_ok = True` for SQLAlchemy 2.x compilation caching.
 
-Installation
-------------
-
-Using `uv` (recommended):
+## Installation
 
 ```bash
 uv add sqlalchemy-postgres-point
 ```
 
-Or with pip:
-
-```bash
-pip install sqlalchemy-postgres-point
-```
-
-Usage
------
+## Usage
 
 ```python
 from sqlalchemy import Column, Integer
@@ -107,80 +94,54 @@ DROP EXTENSION IF EXISTS cube;
 """)
 ```
 
-**Integration Steps:**
+#### Integration Steps
 
 1. Generate a new migration: `alembic revision -m "add_postgres_extensions"`
 2. Copy the `upgrade()` and `downgrade()` functions above into your new migration file
 3. Run the migration: `alembic upgrade head`
 
-Returned Python Values
-----------------------
+## Returned Python Values
 
 Values are loaded as a 2-tuple of floats `(lng, lat)` or `None` when NULL.
 
-Testing
--------
-
-Run the test suite with:
-
-```bash
-uv run pytest -q
-```
-
 ## Alembic Integration
 
-When using `PointType` in your models, you can automatically include the necessary imports in migration files by updating your `alembic/env.py` file.
-
-First, import the integration module:
+To ensure generated migration files include the correct `PointType` import, pass the provided `render_item` hook to `context.configure()` in your `alembic/env.py`:
 
 ```python
-import sqlalchemy_postgres_point.alembic_integration
-```
+from sqlalchemy_postgres_point.alembic_integration import render_item
 
-Then, ensure your `context.configure` call includes a `render_item` hook to handle the `PointType`:
-
-```python
-def render_item(type_, obj, autogen_context):
-    if type_ == "type" and type(obj).__name__ == "PointType":
-        return sqlalchemy_postgres_point.alembic_integration.render_point_type(obj, obj, autogen_context)
-    return False
-
-# ... in run_migrations_online and run_migrations_offline ...
+# in run_migrations_online and run_migrations_offline:
 context.configure(
     # ... other options ...
     render_item=render_item,
 )
 ```
 
-Once added, `from sqlalchemy_postgres_point import PointType` will be automatically included in generated migration files whenever a `PointType` column is detected.
+Once wired up, `from sqlalchemy_postgres_point import PointType` will be automatically included in generated migration files whenever a `PointType` column is detected.
 
-Development
------------
+### Chaining `render_item`
 
-After cloning:
+It's insane to me, but you have to chain multiple `render_item` instances you may have yourself.
 
-```bash
-uv sync  # installs runtime + dev deps
-uv run pytest -q
+```python
+from sqlalchemy_postgres_point.alembic_integration import render_item as render_point
+
+def render_item(type_, obj, autogen_context):
+    return (
+        render_point(type_, obj, autogen_context)
+        or other_package.render_item(type_, obj, autogen_context)
+        or False
+    )
 ```
 
-Project Structure
------------------
+Or you could use something like [`some_fn`](https://funcy.readthedocs.io/en/stable/funcs.html#some_fn) to make this even cleaner.
 
-* `sqlalchemy_postgres_point/point.py` – Implementation of `PointType`.
-* `tests/test_point.py` – Unit tests for processors and comparator.
-
-Limitations / Notes
--------------------
+## Limitations / Notes
 
 * No automatic validation of longitude/latitude ranges; add your own if required.
 * Uses simple textual representation `(lng,lat)` accepted by PostgreSQL `POINT` input parser.
 * If you need advanced spatial indexing / SRID support, look at GeoAlchemy2/PostGIS instead.
-
-License
--------
-
-MIT (see your project's LICENSE file if added later). Contributions welcome.
 
 ---
 
