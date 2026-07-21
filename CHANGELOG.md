@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.2](https://github.com/iloveitaly/sqlalchemy-postgres-point/compare/v0.2.1...v0.2.2) (2026-07-21)
+
+
+### Documentation
+
+* clarify alembic integration and render_item chaining ([4701f74](https://github.com/iloveitaly/sqlalchemy-postgres-point/commit/4701f7407a21a77a8c378cd0a9e532b57fd155fa))
+
 ## [0.2.1](https://github.com/iloveitaly/sqlalchemy-postgres-point/compare/v0.2.0...v0.2.1) (2026-05-05)
 
 
