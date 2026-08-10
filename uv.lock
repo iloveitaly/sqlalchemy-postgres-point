@@ -14,9 +14,9 @@ resolution-markers = [
     "python_full_version < '3.13'",
 ]
 dependencies = [
-    { name = "sqlmodel", marker = "python_full_version < '3.13'" },
-    { name = "textcase", marker = "python_full_version < '3.13'" },
-    { name = "typeid-python", version = "0.3.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.13'" },
+    { name = "sqlmodel" },
+    { name = "textcase" },
+    { name = "typeid-python", version = "0.3.3", source = { registry = "https://pypi.org/simple" } },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/f2/a1/c118591ce276b89e1f99dd9a7fca6eaa7adb58d53a6f4c47234661dd5ae8/activemodel-0.20.0.tar.gz", hash = "sha256:4582637b13284536944d251f63a6934a715fafcae3ef581ba85aeaf1a6bcb65d", size = 36326, upload-time = "2026-04-10T11:34:40.987Z" }
 wheels = [
@@ -31,9 +31,9 @@ resolution-markers = [
     "python_full_version >= '3.13'",
 ]
 dependencies = [
-    { name = "sqlmodel", marker = "python_full_version >= '3.13'" },
-    { name = "typeid-python", version = "0.3.9", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.13'" },
-    { name = "whenever", marker = "python_full_version >= '3.13'" },
+    { name = "sqlmodel" },
+    { name = "typeid-python", version = "0.3.9", source = { registry = "https://pypi.org/simple" } },
+    { name = "whenever" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/65/42/daa1b3584a459036357477378d8feea3ed02c049f902e5554f609860d4cc/activemodel-0.22.0.tar.gz", hash = "sha256:d32bbc392883f78a28a714afda8730c0fb68fd703626c19c0a02dd90b4009967", size = 39670, upload-time = "2026-05-05T13:39:51.575Z" }
 wheels = [
@@ -42,16 +42,16 @@ wheels = [
 
 [[package]]
 name = "alembic"
-version = "1.18.5"
+version = "1.19.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "mako" },
     { name = "sqlalchemy" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/1a/cc/ac0bed8e562e7407fe55c3ba85a4dce86e6dbd8730887bd1e406a6c5c18a/alembic-1.18.5.tar.gz", hash = "sha256:1554982221dd17e9a749b53902407578eb305e453f71999e8c7f0a48389fff8e", size = 2060480, upload-time = "2026-06-25T15:20:54.888Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/fb/01/a48dab7827ac4421272399f7ed9a2ec17edd12c8bcde4417bd7b6821b71a/alembic-1.19.0.tar.gz", hash = "sha256:6487c612fc719dcfa22b17d2dd5b2b458929641e6aa2f0b65b135727f5e6d501", size = 2069906, upload-time = "2026-08-04T18:57:04.599Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/96/78/5fe6dc3a3a5b2f5a2a4faef8bfe336d5fa049a38884ab3172e0098160c01/alembic-1.18.5-py3-none-any.whl", hash = "sha256:06d8ba9d04558022f5395e9317de03d270f3dced49cee01f89fe7a13c26f14bc", size = 264664, upload-time = "2026-06-25T15:20:56.673Z" },
+    { url = "https://files.pythonhosted.org/packages/34/79/59ab6f1fe72eee229de91aa393225389a85df12a0fbbbfa264efcf6d7872/alembic-1.19.0-py3-none-any.whl", hash = "sha256:cf839d3849116aab3cc047e09c6968b9bd6b2fde61b6bb7c1e97352fe5503580", size = 265738, upload-time = "2026-08-04T18:57:06.219Z" },
 ]
 
 [[package]]
@@ -661,7 +661,7 @@ resolution-markers = [
     "python_full_version < '3.13'",
 ]
 dependencies = [
-    { name = "uuid6", marker = "python_full_version < '3.13'" },
+    { name = "uuid6" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/53/ee/9c0283d7ca56c1d1d0fb7076fbc39b11d2bb46f8c1764a983a2ccc34fbf9/typeid_python-0.3.3.tar.gz", hash = "sha256:398f2ff0d938535ccc0c21758eed9be8a1cafdbb4fe6ca32b762a9a07efcd00e", size = 5759, upload-time = "2025-11-20T12:24:53.781Z" }
 wheels = [
@@ -676,7 +676,7 @@ resolution-markers = [
     "python_full_version >= '3.13'",
 ]
 dependencies = [
-    { name = "uuid-utils", marker = "python_full_version >= '3.13'" },
+    { name = "uuid-utils" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/ac/83/d1b140e4941a05ab7f4ccc2a5466b37fa559f48a9d3684d8107a7511508f/typeid_python-0.3.9.tar.gz", hash = "sha256:7cf7ede21e6ba8f272981dbae504d1256261d03edab42fb05d36787dbfd589bd", size = 25201, upload-time = "2026-01-28T18:23:38.917Z" }
 wheels = [
@@ -729,7 +729,7 @@ name = "tzlocal"
 version = "5.3.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "tzdata", marker = "python_full_version >= '3.13' and sys_platform == 'win32'" },
+    { name = "tzdata", marker = "sys_platform == 'win32'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/8b/2e/c14812d3d4d9cd1773c6be938f89e5735a1f11a9f184ac3639b93cef35d5/tzlocal-5.3.1.tar.gz", hash = "sha256:cceffc7edecefea1f595541dbd6e990cb1ea3d19bf01b2809f362a03dd7921fd", size = 30761, upload-time = "2025-03-05T21:17:41.549Z" }
 wheels = [
@@ -772,8 +772,8 @@ name = "whenever"
 version = "0.10.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "tzdata", marker = "python_full_version >= '3.13' and sys_platform == 'win32'" },
-    { name = "tzlocal", marker = "python_full_version >= '3.13' and sys_platform != 'darwin' and sys_platform != 'linux'" },
+    { name = "tzdata", marker = "sys_platform == 'win32'" },
+    { name = "tzlocal", marker = "sys_platform != 'darwin' and sys_platform != 'linux'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/fd/13/281bc0bc19f0e2e9559a22137607271d6e684b0f9bcbaf0a95b95a5e9258/whenever-0.10.0.tar.gz", hash = "sha256:a5ef2b5493531de95294080495d4d9bce9691b4b3d681c6952c7a8b3d52d7a04", size = 429588, upload-time = "2026-04-05T18:43:50.199Z" }
 wheels = [
