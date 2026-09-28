@@ -34,7 +34,7 @@ from sqlalchemy_postgres_point import PointType
 
 
 class Base(DeclarativeBase):
-	pass
+    pass
 
 
 class Place(Base):
@@ -42,6 +42,7 @@ class Place(Base):
     id = Column(Integer, primary_key=True)
     # Store as (longitude, latitude)
     location = Column(PointType)
+
 
 # Example query using the custom comparator
 from sqlalchemy import select
@@ -68,14 +69,15 @@ Revises: your_previous_revision
 Create Date: 2025-01-XX XX:XX:XX.XXXXXX
 
 """
+
 from typing import Sequence, Union
 
 from alembic import op
 import sqlalchemy as sa
 
 # revision identifiers, used by Alembic.
-revision: str = 'your_revision_id'
-down_revision: Union[str, None] = 'your_previous_revision'
+revision: str = "your_revision_id"
+down_revision: Union[str, None] = "your_previous_revision"
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
 
@@ -109,7 +111,9 @@ Values are loaded as a 2-tuple of floats `(lng, lat)` or `None` when NULL.
 To ensure generated migration files include the correct `PointType` import, pass the provided `render_item` hook to `context.configure()` in your `alembic/env.py`. This must be added to **both** `run_migrations_online` and `run_migrations_offline`:
 
 ```python
-from sqlalchemy_postgres_point.alembic_integration import render_item as render_point_item
+from sqlalchemy_postgres_point.alembic_integration import (
+    render_item as render_point_item,
+)
 
 context.configure(
     # ... other options ...
@@ -124,7 +128,10 @@ Once wired up, `from sqlalchemy_postgres_point import PointType` will be automat
 If you need to combine this with other packages that also provide a `render_item`, chain them:
 
 ```python
-from sqlalchemy_postgres_point.alembic_integration import render_item as render_point_item
+from sqlalchemy_postgres_point.alembic_integration import (
+    render_item as render_point_item,
+)
+
 
 def render_item(type_, obj, autogen_context):
     return (
@@ -132,6 +139,7 @@ def render_item(type_, obj, autogen_context):
         or other_package.render_item(type_, obj, autogen_context)
         or False
     )
+
 
 context.configure(
     # ... other options ...

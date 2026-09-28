@@ -1,7 +1,6 @@
 import os
 import shutil
 from pathlib import Path
-from typing import Optional, Tuple
 
 from alembic import command
 from alembic.config import Config
@@ -13,8 +12,8 @@ from sqlalchemy_postgres_point import PointType
 
 class AlembicTestModel(SQLModel, table=True):
     __tablename__ = "alembic_test_model"
-    id: Optional[int] = Field(default=None, primary_key=True)
-    location: Optional[Tuple[float, float]] = Field(
+    id: int | None = Field(default=None, primary_key=True)
+    location: tuple[float, float] | None = Field(
         default=None,
         sa_column=Column(PointType()),
     )
@@ -58,6 +57,7 @@ def test_alembic_integration():
 
 def test_render_item_directly():
     from sqlalchemy import Integer
+
     from sqlalchemy_postgres_point.alembic_integration import render_item
 
     class MockAutogenContext:
