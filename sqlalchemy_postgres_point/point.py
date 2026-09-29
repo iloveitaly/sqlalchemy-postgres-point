@@ -11,7 +11,6 @@ References:
 
 import math
 import re
-from typing import Tuple
 
 from sqlalchemy.types import Float, UserDefinedType
 
@@ -23,7 +22,7 @@ class PointType(UserDefinedType):
         return "POINT"
 
     @staticmethod
-    def _validate_point(value: Tuple[float, float]) -> Tuple[float, float]:
+    def _validate_point(value: tuple[float, float]) -> tuple[float, float]:
         """Validate and normalize a (lng, lat) tuple.
 
         - Ensures it's a 2-length tuple/list
